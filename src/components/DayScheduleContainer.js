@@ -11,14 +11,22 @@ class DayScheduleContainer extends React.Component {
       {
         id:12,
         start: new Date(),
-        end: new Date(moment().add(1, 'days')),
+        end: new Date(moment().add(1, 'hour')),
         title: 'Some title',
+        color: '#e67e22',
       },
       {
         id: 0,
-        startTime: '2018-10-15T16:00:00Z',
-        endTime: '2018-10-15T18:00:00Z',
+        start: new Date(moment().add(1, 'hour')),
+        end: new Date(moment().add(3, 'hour')),
         title: 'Morning Event',
+        color: '#2ecc71',
+      },
+      {
+        id: 20,
+        starttime: '2018-10-16T16:00:00Z',
+        endtime: '2018-10-16T18:00:00Z',
+        description: 'Morning Event',
         color: '#2ecc71',
       },
       {
