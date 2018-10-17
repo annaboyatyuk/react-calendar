@@ -17,9 +17,9 @@ class DayScheduleContainer extends React.Component {
       },
       {
         id: 0,
-        start: new Date(moment().add(1, 'hour')),
-        end: new Date(moment().add(3, 'hour')),
-        title: 'Morning Event',
+        startTime: new Date(moment().add(1, 'hour')),
+        endTime: new Date(moment().add(3, 'hour')),
+        description: 'Morning Event',
         color: '#2ecc71',
       },
       {
@@ -62,9 +62,21 @@ class DayScheduleContainer extends React.Component {
     };
   }
 
-  handleEventUpdate(event) {
+  handleEventUpdate = (type, { event, startTime, endTime, allDay }) => {
+    this.setState(state => {
+      state.events.startTime = startTime;
+      state.events.endTime = endTime;
+      return { events: state.events };
+    });
+  };
 
-  }
+  handleEventDrop = ({ event, startTime, endTime, allDay }) => {
+    console.log(startTime, this.props.enventData);
+  };
+
+  // handleEventUpdate(event) {
+
+  // }
 
   render() {
     const {
@@ -77,7 +89,8 @@ class DayScheduleContainer extends React.Component {
         <DaySchedule
           date={date}
           events={events}
-          onEventUpdate={this.handleEventUpdate.bind(this)}
+          onEventUpdate={this.handleEventUpdate}
+          onEventDrop={this.handleEventDrop}
         />
       </React.Fragment>
     );

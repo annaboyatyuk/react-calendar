@@ -16,36 +16,39 @@ export default class DaySchedule extends Component {
     events: [
       {
         // startTime: this.props.events.start,
-        start: new Date(this.props.events.startTime),
-        endTime: new Date(this.props.events.endTime),
-        title: this.props.events.description,
+        start: '',
+        end: '',
+        title: '',
       }
     ]
-    // this.props.events
-    // [
-    //   {
-    //     start: new Date(),
-    //     end: new Date(moment().add(1, 'days')),
-    //     title: 'Some title'
-    //   }
-    // ]
   };
 
-  onEventResize = (type, { event, startTime, endTime, allDay }) => {
-    this.setState(state => {
-      state.events.startTime = startTime;
-      state.events.endTime = endTime;
-      return { events: state.events };
-    });
-  };
+  // showEvents = () => {
+  //   let items = {
+  //     start: this.props.events.map(event => event.startTime),
+  //     end: this.props.events.map(event => event.endTime),
+  //     title: this.props.events.map(event => event.description),
+  //   };
+  //   let arr = [...this.state.events, items];
+  //   this.setState({events: arr})
+  //   // return arr;
+  // }
 
-  onEventDrop = ({ event, startTime, endTime, allDay }) => {
-    console.log(startTime, this.props.enventData);
-  };
+  // onEventResize = (type, { event, startTime, endTime, allDay }) => {
+  //   this.setState(state => {
+  //     state.events.startTime = startTime;
+  //     state.events.endTime = endTime;
+  //     return { events: state.events };
+  //   });
+  // };
+
+  // onEventDrop = ({ event, startTime, endTime, allDay }) => {
+  //   console.log(startTime, this.props.enventData);
+  // };
 
   render() {
-    console.log('aaaa',this.state, this.props.events.map(event => event.color))
-    let colors = this.props.events.color
+    console.log('aaaa', this.props.events.map(event => event.startTime))
+    let colors = this.props.events.map(event=> event.color)
     return (
       <Fragment>
         <div className='App'>
@@ -54,9 +57,9 @@ export default class DaySchedule extends Component {
             // defaultDate={new Date(this.props.date)}
             defaultDate={new Date()}
             defaultView='day'
-            events={this.state.events}
-            onEventDrop={this.onEventDrop}
-            onEventResize={this.onEventResize}
+            events={this.props.events}
+            onEventDrop={this.props.onEventDrop}
+            onEventResize={this.props.onEventUpdate}
             resizable
             style={{ 
               height: '80vh', 
