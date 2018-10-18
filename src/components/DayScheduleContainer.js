@@ -49,8 +49,8 @@ class DayScheduleContainer extends React.Component {
     };
   }
 
-  handleEventUpdate = ({ event, startTime, endTime }) => {
-    console.log('fjiejoewi',event)
+  handleEventUpdate = (type, { event, startTime, endTime }) => {
+    console.log('fjiejoewi',event, type)
     let moveEvent = this.state.events.map(existingEvent => {
       console.log('ttttttttttttt',existingEvent)
       return existingEvent.id === event.id ? {...existingEvent, startTime, endTime} : existingEvent
@@ -64,12 +64,12 @@ class DayScheduleContainer extends React.Component {
 
     const { events } = this.state
 
-    const idx = events.indexOf(event)
+    const index = events.indexOf(event)
 
     const updatedEvent = { ...event, start, end }
 
     const nextEvents = [...events]
-    nextEvents.splice(idx, 1, updatedEvent)
+    nextEvents.splice(index, 1, updatedEvent)
 
     this.setState({
       events: nextEvents,

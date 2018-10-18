@@ -15,22 +15,22 @@ const DnDCalendar = withDragAndDrop(Calendar);
 export default class DaySchedule extends Component {
 
 
-  componentDidMount() {
-    let mapEvents = this.props.events.map(event => {
-      // return 
-      this.setState({
-        id: event.id,
-        start: new Date(event.startTime.slice(0, event.startTime.length -1)),
-        end: new Date(event.endTime.slice(0, event.startTime.length -1)),
-        title: event.description,
-        color: event.color,
-      });
-    });
-    return mapEvents;
-  }
+  // componentDidMount = () => {
+  //   let mapEvents = this.props.events.map(event => {
+  //     // return 
+  //     this.setState({
+  //       id: event.id,
+  //       start: new Date(event.startTime.slice(0, event.startTime.length -1)),
+  //       end: new Date(event.endTime.slice(0, event.startTime.length -1)),
+  //       title: event.description,
+  //       color: event.color,
+  //     });
+  //   });
+  //   return mapEvents;
+  // }
 
   render() {
-    // console.log('aaaa', this.props.events);
+    console.log('aaaa', this.props.events);
 
     let mapEvents = this.props.events.map(event => {
       return {
@@ -59,7 +59,7 @@ export default class DaySchedule extends Component {
             // defaultDate={new Date()}
             defaultView='day'
             events={mapEvents}
-            // onEventResize={this.props.onEventUpdate}
+            onEventResize={this.props.onEventUpdate}
             // resizable
             // onEventDrop={this.props.onEventDrop}
             style={{ 
