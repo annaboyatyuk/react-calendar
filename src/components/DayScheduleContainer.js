@@ -8,24 +8,24 @@ class DayScheduleContainer extends React.Component {
 
     const date = '2018-11-14T08:00:00Z';
     const initialEventData = [
-      {
-        id:12,
-        start: new Date(),
-        end: new Date(moment().add(1, 'hour')),
-        title: 'Some title',
-        color: '#e67e22',
-      },
-      {
-        id: 0,
-        startTime: new Date(moment().add(1, 'hour')),
-        endTime: new Date(moment().add(3, 'hour')),
-        description: 'Morning Event',
-        color: '#2ecc71',
-      },
+      // {
+      //   id:12,
+      //   start: new Date(),
+      //   end: new Date(moment().add(1, 'hour')),
+      //   title: 'Some title',
+      //   color: '#e67e22',
+      // },
+      // {
+      //   id: 0,
+      //   start: new Date('2018-10-17T18:00:00'),
+      //   end: new Date('2018-10-17T19:00:00'),
+      //   title: 'Morning Event',
+      //   color: '#2ecc71',
+      // },
       {
         id: 20,
-        starttime: '2018-10-16T16:00:00Z',
-        endtime: '2018-10-16T18:00:00Z',
+        startTime: '2018-10-17T16:00:00Z',
+        endTime: '2018-10-17T18:00:00Z',
         description: 'Morning Event',
         color: '#2ecc71',
       },
@@ -74,9 +74,6 @@ class DayScheduleContainer extends React.Component {
     console.log(startTime, this.props.enventData);
   };
 
-  // handleEventUpdate(event) {
-
-  // }
 
   render() {
     const {
