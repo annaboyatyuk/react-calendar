@@ -1,6 +1,6 @@
 import React from 'react';
 import DaySchedule from './DaySchedule.js';
-import moment from 'moment';
+
 
 class DayScheduleContainer extends React.Component {
   constructor(props) {
@@ -8,20 +8,6 @@ class DayScheduleContainer extends React.Component {
 
     const date = '2018-11-14T08:00:00Z';
     const initialEventData = [
-      // {
-      //   id:12,
-      //   start: new Date(),
-      //   end: new Date(moment().add(1, 'hour')),
-      //   title: 'Some title',
-      //   color: '#e67e22',
-      // },
-      // {
-      //   id: 0,
-      //   start: new Date('2018-10-17T18:00:00'),
-      //   end: new Date('2018-10-17T19:00:00'),
-      //   title: 'Morning Event',
-      //   color: '#2ecc71',
-      // },
       {
         id: 20,
         startTime: '2018-10-17T16:00:00Z',
@@ -62,17 +48,49 @@ class DayScheduleContainer extends React.Component {
     };
   }
 
-  handleEventUpdate = (type, { event, startTime, endTime, allDay }) => {
-    this.setState(state => {
-      state.events.startTime = startTime;
-      state.events.endTime = endTime;
-      return { events: state.events };
-    });
+  handleEventUpdate = ({ event, startTime, endTime }) => {
+    console.log('fjiejoewi',event)
+    let moveEvent = this.state.events.map(existingEvent => {
+      console.log('ttttttttttttt',existingEvent)
+      return existingEvent.id === event.id ? {...existingEvent, startTime, endTime} : existingEvent
+    })
+    this.setState({
+      events: moveEvent,
+    })
   };
 
-  handleEventDrop = ({ event, startTime, endTime, allDay }) => {
-    console.log(startTime, this.props.enventData);
+  handleEventDrop = ({ event, startTime, endTime }) => {
+
+    // this.setState(state => {
+    //   state.events.startTime = startTime;
+    //   state.events.endTime = endTime;
+    //   return { events: state.events };
+    // });
   };
+
+  // moveEvent({ event, start, end, isAllDay: droppedOnAllDaySlot }) {
+  //   const { events } = this.state
+
+  //   const idx = events.indexOf(event)
+  //   let allDay = event.allDay
+
+  //   // if (!event.allDay && droppedOnAllDaySlot) {
+  //   //   allDay = true
+  //   // } else if (event.allDay && !droppedOnAllDaySlot) {
+  //   //   allDay = false
+  //   // }
+
+  //   const updatedEvent = { ...event, start, end, allDay }
+
+  //   const nextEvents = [...events]
+  //   nextEvents.splice(idx, 1, updatedEvent)
+
+  //   this.setState({
+  //     events: nextEvents,
+  //   })
+
+  //   // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
+  // }
 
 
   render() {
@@ -87,7 +105,7 @@ class DayScheduleContainer extends React.Component {
           date={date}
           events={events}
           onEventUpdate={this.handleEventUpdate}
-          onEventDrop={this.handleEventDrop}
+          // onEventDrop={this.handleEventDrop}
         />
       </React.Fragment>
     );
