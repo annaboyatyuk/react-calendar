@@ -1,6 +1,5 @@
 import React from 'react';
-// import DaySchedule from './DaySchedule.js';
-import Schedule from './Schedule.js';
+import DaySchedule from './DaySchedule.js';
 
 
 class DayScheduleContainer extends React.Component {
@@ -86,7 +85,7 @@ class DayScheduleContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <Schedule
+        <DaySchedule
           date={date}
           events={events}
           onEventUpdate={this.handleEventUpdate}
