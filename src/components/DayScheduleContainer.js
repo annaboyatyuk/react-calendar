@@ -1,5 +1,6 @@
 import React from 'react';
-import DaySchedule from './DaySchedule.js';
+// import DaySchedule from './DaySchedule.js';
+import Schedule from './Schedule.js';
 
 
 class DayScheduleContainer extends React.Component {
@@ -59,38 +60,22 @@ class DayScheduleContainer extends React.Component {
     })
   };
 
-  handleEventDrop = ({ event, startTime, endTime }) => {
+  handleEventDrop = ({ event, start, end }) => {
 
-    // this.setState(state => {
-    //   state.events.startTime = startTime;
-    //   state.events.endTime = endTime;
-    //   return { events: state.events };
-    // });
+    const { events } = this.state
+
+    const idx = events.indexOf(event)
+
+    const updatedEvent = { ...event, start, end }
+
+    const nextEvents = [...events]
+    nextEvents.splice(idx, 1, updatedEvent)
+
+    this.setState({
+      events: nextEvents,
+    })
+
   };
-
-  // moveEvent({ event, start, end, isAllDay: droppedOnAllDaySlot }) {
-  //   const { events } = this.state
-
-  //   const idx = events.indexOf(event)
-  //   let allDay = event.allDay
-
-  //   // if (!event.allDay && droppedOnAllDaySlot) {
-  //   //   allDay = true
-  //   // } else if (event.allDay && !droppedOnAllDaySlot) {
-  //   //   allDay = false
-  //   // }
-
-  //   const updatedEvent = { ...event, start, end, allDay }
-
-  //   const nextEvents = [...events]
-  //   nextEvents.splice(idx, 1, updatedEvent)
-
-  //   this.setState({
-  //     events: nextEvents,
-  //   })
-
-  //   // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
-  // }
 
 
   render() {
@@ -101,11 +86,11 @@ class DayScheduleContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <DaySchedule
+        <Schedule
           date={date}
           events={events}
           onEventUpdate={this.handleEventUpdate}
-          // onEventDrop={this.handleEventDrop}
+          onEventDrop={this.handleEventDrop}
         />
       </React.Fragment>
     );
