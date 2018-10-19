@@ -48,22 +48,11 @@ class DayScheduleContainer extends React.Component {
     };
   }
 
-  handleEventUpdate = (type, { event, start, end }) => {
-    console.log('444444444444',start)
-    
-    let datee = moment(start, 'ddd MMM DD YYYY HH:mm:ss GMT-0800 (Pacific Standard Time)').format() +'Z';
-    console.log('1010101',datee)
-    // datee.format() +'Z';
-    // console.log('121212',datee.format() +'Z')
-    //  Wed Nov 14 2018 15:00:00 GMT-0800 (Pacific Standard Time)
-
-    let startTime = start.toISOString();
-    let endTime = end.toISOString();
-
-    console.log('88fjiejoewi',event, startTime)
+  handleEventUpdate = (type, { event, start, end }) => {    
+    let startTime = moment(start).format() +'Z';
+    let endTime = moment(end).format() +'Z';
 
     let moveEvent = this.state.events.map(existingEvent => {
-      console.log('ttttttttttttt',existingEvent)
       return existingEvent.id === event.id ? {...existingEvent, startTime, endTime} : existingEvent
     })
     this.setState({
@@ -72,15 +61,28 @@ class DayScheduleContainer extends React.Component {
   };
 
   handleEventDrop = ({ event, start, end }) => {
+    console.log('WWWWW',event, start, end)
+    console.log('ggggg', this.state.events)
+    let startTime = moment(start).format() +'Z';
+    let endTime = moment(end).format() +'Z';
+    // const { events } = this.state
+    // if()
 
-    const { events } = this.state
+    const index = this.state.events.indexOf(event)
+    console.log('BBBB',index)
 
-    const index = events.indexOf(event)
+    // let updatedEvent = events.map(currentEvent => {
+    //   return currentEvent.id === event.id ? {...currentEvent, startTime, endTime} : currentEvent
+    // })
 
-    const updatedEvent = { ...event, start, end }
+    // const nextEvents = [...this.state.events]
+    // console.log('TTTT',nextEvents.splice(1, 1, updatedEvent))
 
-    const nextEvents = [...events]
-    nextEvents.splice(index, 1, updatedEvent)
+    const updatedEvent = { ...event, startTime, endTime, title: this.state.title }
+
+    const nextEvents = [...this.state.events]
+    console.log('TTTT',nextEvents.splice(1, 1, updatedEvent))
+    nextEvents.splice(1, 1, updatedEvent)
 
     this.setState({
       events: nextEvents,
