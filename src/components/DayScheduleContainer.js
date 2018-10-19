@@ -1,6 +1,6 @@
 import React from 'react';
 import DaySchedule from './DaySchedule.js';
-
+import moment from 'moment';
 
 class DayScheduleContainer extends React.Component {
   constructor(props) {
@@ -48,8 +48,20 @@ class DayScheduleContainer extends React.Component {
     };
   }
 
-  handleEventUpdate = (type, { event, startTime, endTime }) => {
-    console.log('fjiejoewi',event, type)
+  handleEventUpdate = (type, { event, start, end }) => {
+    console.log('444444444444',start)
+    
+    let datee = moment(start, 'ddd MMM DD YYYY HH:mm:ss GMT-0800 (Pacific Standard Time)').format() +'Z';
+    console.log('1010101',datee)
+    // datee.format() +'Z';
+    // console.log('121212',datee.format() +'Z')
+    //  Wed Nov 14 2018 15:00:00 GMT-0800 (Pacific Standard Time)
+
+    let startTime = start.toISOString();
+    let endTime = end.toISOString();
+
+    console.log('88fjiejoewi',event, startTime)
+
     let moveEvent = this.state.events.map(existingEvent => {
       console.log('ttttttttttttt',existingEvent)
       return existingEvent.id === event.id ? {...existingEvent, startTime, endTime} : existingEvent

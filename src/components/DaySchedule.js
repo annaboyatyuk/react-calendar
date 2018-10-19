@@ -31,66 +31,72 @@ export default class DaySchedule extends Component {
 
   render() {
 
-    console.log('aaaa', this.props.events.map(event => event.startTime.slice(-1)));
+    // console.log('aaaa', this.props.events);
+    console.log('75757576767', this.props.events);
 
-    if(this.props.events.map(event => event.startTime.slice(-1)) == 'Z') {
 
+    // if(this.props.events.map(event => event.startTime.slice(-1)) === 'Z') {
+    //   console.log('IROIEJOIFJEIO')
+    // }
+    // else{
+    //   console.log('differenttimestamp')
+    // }
 
-      let mapEvents = this.props.events.map(event => {
-        console.log('PPPP',event.startTime.slice(-1));
-        return {
-          id: event.id,
-          start: new Date(event.startTime.slice(0, event.startTime.length -1)),
-          end: new Date(event.endTime.slice(0, event.startTime.length -1)),
-          title: event.description,
-          color: event.color,
-        };
-      });
+    let mapEvents = this.props.events.map(event => {
+      console.log('PPPP',event);
+      return {
+        id: event.id,
+        start: new Date(event.startTime.slice(0, event.startTime.length -1)),
+        end: new Date(event.endTime.slice(0, event.startTime.length -1)),
+        title: event.description,
+        color: event.color,
+      };
+    });
     
-      let colors = mapEvents.color;
+    let colors = mapEvents.color;
 
-      // let event = this.props.eventItems;
-      console.log('REKLEKJRKLEK',this.props.events, mapEvents);
+    // let event = this.props.eventItems;
+    console.log('REKLEKJRKLEK',this.props.events, mapEvents);
 
-      return (
-        <Fragment>
-          <div className='App'>
-            <DnDCalendar
+    return (
+      <Fragment>
+        <div className='App'>
+          <DnDCalendar
             // localizer={localizer}
             // startAccessor='start'
             // endAccessor='end'
             // toolbar={false}
-              defaultDate={new Date(this.props.date)}
-              // defaultDate={new Date()}
-              defaultView='day'
-              events={mapEvents}
-              onEventResize={this.props.onEventUpdate}
-              // resizable
-              // onEventDrop={this.props.onEventDrop}
-              style={{ 
-                height: '100vh', 
-                maxWidth: '100%',
-                color:{colors},
-              }}
-            />
-          </div>
-        </Fragment>
-      );
-    }
-
-
-
-    else {
-      return <h1>hfoeihfoi</h1>
-    }
-
-
-
-
-
-
-
-
-
+            defaultDate={new Date(this.props.date)}
+            // defaultDate={new Date()}
+            defaultView='day'
+            events={mapEvents}
+            onEventResize={this.props.onEventUpdate}
+            // resizable
+            // onEventDrop={this.props.onEventDrop}
+            style={{ 
+              height: '100vh', 
+              maxWidth: '100%',
+              color:{colors},
+            }}
+          />
+        </div>
+      </Fragment>
+    );
   }
+
+
+
+  // else {
+  //   return <h1>hfoeihfoi</h1>
+  // }
+
+
+
+
+
+
+
+
+
+  // }
 }
