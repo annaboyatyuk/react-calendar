@@ -15,14 +15,8 @@ const DnDCalendar = withDragAndDrop(Calendar);
 export default class DaySchedule extends Component {
 
   render() {
-
-    // console.log('aaaa', this.props.events);
-    console.log('75757576767', this.props.events);
-
-
-
+    
     let mapEvents = this.props.events.map(event => {
-      console.log('PPPPl',event);
       return {
         id: event.id,
         start: new Date(event.startTime.slice(0, event.startTime.length -1)),
@@ -34,13 +28,10 @@ export default class DaySchedule extends Component {
     
     let colors = mapEvents.color;
 
-    console.log('REKLEKJRKLEK',this.props.events, mapEvents);
-
     return (
       <Fragment>
         <div className='App'>
           <DnDCalendar
-            // toolbar={false}
             defaultDate={new Date(this.props.date)}
             // defaultDate={new Date()}
             defaultView='day'
