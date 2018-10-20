@@ -9,13 +9,6 @@ class DayScheduleContainer extends React.Component {
     const date = '2018-11-14T08:00:00Z';
     const initialEventData = [
       {
-        id: 20,
-        startTime: '2018-10-17T16:00:00Z',
-        endTime: '2018-10-17T18:00:00Z',
-        description: 'Morning Event',
-        color: '#2ecc71',
-      },
-      {
         id: 1,
         startTime: '2018-11-14T16:00:00Z',
         endTime: '2018-11-14T18:00:00Z',
@@ -64,8 +57,8 @@ class DayScheduleContainer extends React.Component {
     let startTime = moment(start).format() +'Z';
     let endTime = moment(end).format() +'Z';
 
-    // event.start = moment(event.start).format() + 'Z';
-    // event.end = moment(event.end).format() + 'Z';
+    event.start = moment(event.start).format() + 'Z';
+    event.end = moment(event.end).format() + 'Z';
     event.description = event.title;
 
     const updatedEvent = { ...event, startTime, endTime, title: this.state.title }

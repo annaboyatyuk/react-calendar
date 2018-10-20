@@ -15,7 +15,6 @@ const DnDCalendar = withDragAndDrop(Calendar);
 export default class DaySchedule extends Component {
 
   render() {
-    
     let mapEvents = this.props.events.map(event => {
       return {
         id: event.id,
