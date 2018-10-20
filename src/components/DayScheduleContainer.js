@@ -65,24 +65,21 @@ class DayScheduleContainer extends React.Component {
     console.log('ggggg', this.state.events)
     let startTime = moment(start).format() +'Z';
     let endTime = moment(end).format() +'Z';
-    // const { events } = this.state
-    // if()
+
+    event.start = moment(event.start).format() + 'Z';
+    event.end = moment(event.end).format() + 'Z';
+    event.description = event.title;
 
     const index = this.state.events.indexOf(event)
     console.log('BBBB',index)
 
-    // let updatedEvent = events.map(currentEvent => {
-    //   return currentEvent.id === event.id ? {...currentEvent, startTime, endTime} : currentEvent
-    // })
-
-    // const nextEvents = [...this.state.events]
-    // console.log('TTTT',nextEvents.splice(1, 1, updatedEvent))
 
     const updatedEvent = { ...event, startTime, endTime, title: this.state.title }
+    console.log('hhhahah', updatedEvent);
 
     const nextEvents = [...this.state.events]
     console.log('TTTT',nextEvents.splice(1, 1, updatedEvent))
-    nextEvents.splice(1, 1, updatedEvent)
+    nextEvents.splice(index, 1, updatedEvent)
 
     this.setState({
       events: nextEvents,
