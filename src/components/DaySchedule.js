@@ -24,15 +24,12 @@ export default class DaySchedule extends Component {
         color: event.color,
       };
     });
-    
-    let colors = mapEvents.color;
 
     return (
       <Fragment>
         <div className='App'>
           <DnDCalendar
             defaultDate={new Date(this.props.date)}
-            // defaultDate={new Date()}
             defaultView='day'
             events={mapEvents}
             onEventResize={this.props.onEventUpdate}
@@ -41,8 +38,8 @@ export default class DaySchedule extends Component {
             style={{ 
               height: '100vh', 
               maxWidth: '100%',
-              color:{colors},
             }}
+            eventPropGetter= {event => ({style: {backgroundColor: event.color}})}
           />
         </div>
       </Fragment>
